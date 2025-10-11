@@ -1,0 +1,69 @@
+ROUTINE Lab2.Session
+
+Start()
+    // Головна процедура, яка викликає інші частини програми
+    DO Input(.group, .semester, .subject, .studentID)
+    DO Save(group, semester, subject, studentID)
+    DO Display(group, semester, subject, studentID)
+    QUIT
+
+Input(group, sem, subj, id)
+    // --- Блок вводу даних ---
+    WRITE "Облік результатів сесії",!
+    WRITE "-----------------------",!
+    READ "Введіть шифр групи: ", group
+    READ !,"Введіть номер семестру: ", sem
+    READ !,"Введіть назву предмета: ", subj
+    READ !,"Введіть номер залікової книжки: ", id
+    QUIT
+
+Save(group, sem, subj, id)
+    // --- Зберігаємо дані в глобал ^Session ---
+    // Структура: ^Session("ШифрГрупи", НомерСеместру, "НазваПредмета", НомерЗаліковки)
+    
+    // 1. Значення - СИСТЕМНИЙ список з балами (теорія, практика, бонус)
+    SET ^Session(group, sem, subj, id) = $LISTBUILD(60, 30, 5)
+    
+    // 2. Створюємо ще один вузол для дат перездач - РЯДКОВИЙ список
+    SET ^Session(group, sem, subj, id, "retakes") = "2025-02-10,2025-02-17"
+    
+    WRITE !!, "Дані про оцінку студента успішно збережено!", !
+    QUIT
+
+Display(group, sem, subj, id)
+    // --- Демонстрація роботи з глобалом ---
+    WRITE !!, "--- Пошук та вивід збережених даних ---",!
+    
+    // 1. $DATA: Перевіряємо, чи є у студента оцінка з цього предмету
+    WRITE !,"1. Функція $DATA:",!
+    IF $DATA(^Session(group, sem, subj, id)) {
+        WRITE "   Так, запис про оцінку для студента ", id, " існує.",!
+    } ELSE {
+        WRITE "   Запис про оцінку відсутній.",!
+    }
+
+    // 2. $GET: Безпечно отримуємо бали і виводимо їх суму
+    WRITE !,"2. Функція $GET:",!
+    SET pointsList = $GET(^Session(group, sem, subj, id))
+    // $LISTGET отримує елемент зі списку, $LISTLENGTH - його довжину
+    SET totalPoints = $LISTGET(pointsList, 1) + $LISTGET(pointsList, 2) + $LISTGET(pointsList, 3)
+    WRITE "   Отримані бали (системний список): ", $LISTTOSTRING(pointsList),!
+    WRITE "   Загальний бал студента: ", totalPoints, !
+
+    // 3. $ORDER: Ітерація по всіх студентах у групі з цього предмету
+    WRITE !,"3. Функція $ORDER (перелік студентів групи):",!
+    WRITE "   Студенти групи ", group, " з предмета '", subj, "':",!
+    SET currentID = "" // Починаємо з порожнього рядка
+    FOR {
+        SET currentID = $ORDER(^Session(group, sem, subj, currentID))
+        QUIT:currentID="" // Виходимо, коли студенти закінчились
+        WRITE "   - Студент #", currentID, !
+    }
+    
+    // 4. $QLENGTH: Отримуємо "глибину" вкладеності (кількість індексів)
+    WRITE !,"4. Функція $QLENGTH:",!
+    // Створюємо повне посилання на вузол
+    SET nodeReference = $NA(^Session(group, sem, subj, id, "retakes")) 
+    WRITE "   Кількість індексів до вузла 'retakes': ", $QLENGTH(nodeReference), !
+
+    QUIT
