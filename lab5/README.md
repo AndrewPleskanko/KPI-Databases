@@ -37,5 +37,5 @@
 ![Generate_data](img/Populate_Success.png)
 
 ### 2. Проходження всіх тестів
-![Tests_Done](img/3_Tests_Passed.png)
+![Tests_Done](img/Tests_Passed.png)
 
