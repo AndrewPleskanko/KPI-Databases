@@ -10,7 +10,6 @@ Method TestOrderTotalWithTax()
     Set sc = o.%Save()
     If $$$ISERR(sc) { Throw ##class(%Exception.StatusException).CreateFromStatus(sc) }
 
-    // Перевіряємо розрахунок TotalWithTax (1.20)
     If o.TotalWithTax '= 120 {
         Do ##class(Flowers.Order).%DeleteId(o.%Id())
         Throw ##class(%Exception.General).%New("TotalWithTax should be 120, got: " _ o.TotalWithTax)
@@ -42,13 +41,11 @@ Method TestDeleteCustomerRestriction()
     Set sc = ord.%Save()
     If $$$ISERR(sc) { Throw ##class(%Exception.StatusException).CreateFromStatus(sc) }
 
-    // Спроба видалити Customer з Orders — має бути помилка
     Set sc = ##class(Flowers.Customer).%DeleteId(c.%Id())
     If $$$ISOK(sc) {
         Throw ##class(%Exception.General).%New("Customer with Orders should be restricted from delete")
     }
 
-    // Очистка
     Do ##class(Flowers.Order).%DeleteId(ord.%Id())
     Do ##class(Flowers.Employee).%DeleteId(emp.%Id())
     Do ##class(Flowers.Customer).%DeleteId(c.%Id())

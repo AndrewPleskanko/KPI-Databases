@@ -1,7 +1,6 @@
 Class Flowers.Tests.TestRunner
 {
 
-/// Запускає всі тести напряму через інстанціювання тест-класів
 ClassMethod RunAll() As %Status
 {
     Set list = $ListBuild(
@@ -22,7 +21,6 @@ ClassMethod RunAll() As %Status
         }
         Write !, "=== Running tests for: ", cls, " ===", !
         
-        // Отримуємо список методів класу що починаються з "Test"
         Set methods = ""
         Set classdef = ##class(%Dictionary.CompiledClass).%OpenId(cls)
         If classdef '= "" {
@@ -35,7 +33,6 @@ ClassMethod RunAll() As %Status
             }
         }
         
-        // Запускаємо кожен тест-метод
         Set testObj = $ClassMethod(cls, "%New")
         Set passed = 0
         Set failed = 0

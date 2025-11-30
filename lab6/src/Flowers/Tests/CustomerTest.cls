@@ -30,7 +30,6 @@ Method TestUniqueEmail()
     Set b.Name = "BBB"
     Set b.Email = "uniqemail@example.com"
     Set sc = b.%Save()
-    // Очікуємо помилку — дублікат Email
     If $$$ISOK(sc) {
         Do ##class(Flowers.Customer).%DeleteId(b.%Id())
         Do ##class(Flowers.Customer).%DeleteId(a.%Id())
@@ -45,7 +44,6 @@ Method TestValidationAndDeleteWithOrders()
     Set c = ##class(Flowers.Customer).%New()
     Set c.Name = "NoEmail"
     Set sc = c.%Save()
-    // Очікуємо помилку — Email required
     If $$$ISOK(sc) {
         Do ##class(Flowers.Customer).%DeleteId(c.%Id())
         Throw ##class(%Exception.General).%New("Missing Email should fail")
@@ -54,7 +52,6 @@ Method TestValidationAndDeleteWithOrders()
     Set c.Email = "noemailcust@example.com"
     Set c.Name = "AB"
     Set sc = c.%Save()
-    // Очікуємо помилку — Name занадто коротке
     If $$$ISOK(sc) {
         Do ##class(Flowers.Customer).%DeleteId(c.%Id())
         Throw ##class(%Exception.General).%New("Name shorter than MIN should fail")
@@ -79,13 +76,11 @@ Method TestValidationAndDeleteWithOrders()
     Set sc = ord.%Save()
     If $$$ISERR(sc) { Throw ##class(%Exception.StatusException).CreateFromStatus(sc) }
 
-    // Спроба видалити Customer з Orders — має бути помилка
     Set sc = ##class(Flowers.Customer).%DeleteId(c.%Id())
     If $$$ISOK(sc) {
         Throw ##class(%Exception.General).%New("Customer with Orders should not be deleted directly")
     }
 
-    // Очистка
     Do ##class(Flowers.Order).%DeleteId(ord.%Id())
     Do ##class(Flowers.Employee).%DeleteId(emp.%Id())
     Set sc = ##class(Flowers.Customer).%DeleteId(c.%Id())

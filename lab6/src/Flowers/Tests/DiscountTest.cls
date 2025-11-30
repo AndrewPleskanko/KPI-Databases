@@ -31,7 +31,6 @@ Method TestUniqueCode()
     Set b.Percent = 20
     Set b.Expiry = $ZDATEH("2025-07-31",3)
     Set sc = b.%Save()
-    // Очікуємо помилку — дублікат Code
     If $$$ISOK(sc) {
         Do ##class(Flowers.Discount).%DeleteId(b.%Id())
         Do ##class(Flowers.Discount).%DeleteId(a.%Id())
@@ -43,7 +42,6 @@ Method TestUniqueCode()
 
 Method TestPercentAndExpiryValidation()
 {
-    // Percent занадто малий (0)
     Set d = ##class(Flowers.Discount).%New()
     Set d.Code = "P_LOW_TEST"
     Set d.Percent = 0
@@ -54,14 +52,12 @@ Method TestPercentAndExpiryValidation()
         Throw ##class(%Exception.General).%New("Percent < MIN should fail")
     }
 
-    // Мінімум = 1
     Set d.Percent = 1
     Set d.Code = "P_MIN_TEST"
     Set sc = d.%Save()
     If $$$ISERR(sc) { Throw ##class(%Exception.StatusException).CreateFromStatus(sc) }
     Do ##class(Flowers.Discount).%DeleteId(d.%Id())
 
-    // Максимум = 100
     Set d2 = ##class(Flowers.Discount).%New()
     Set d2.Code = "P_MAX_TEST"
     Set d2.Percent = 100
@@ -70,7 +66,6 @@ Method TestPercentAndExpiryValidation()
     If $$$ISERR(sc) { Throw ##class(%Exception.StatusException).CreateFromStatus(sc) }
     Do ##class(Flowers.Discount).%DeleteId(d2.%Id())
 
-    // Вище MAX — помилка
     Set d3 = ##class(Flowers.Discount).%New()
     Set d3.Code = "P_TOO_HIGH_TEST"
     Set d3.Percent = 101

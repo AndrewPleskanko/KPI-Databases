@@ -6,9 +6,6 @@ ClassMethod Run() As %Status
     Set sc = $$$OK
     Set count = 0
 
-    ; --- Якщо хочеш повністю очистити базу перед наповненням, розкоментуй наступний рядок
-    ; Do ..ClearAll()
-
     Write "Creating Flowers...",!
     Set flowerData = $ListBuild(
         $ListBuild("Red Rose", "Red", 10, "FL-001", 35.50, "Netherlands"),
@@ -213,7 +210,6 @@ ClassMethod Run() As %Status
 
 ClassMethod ClearAll() As %Status
 {
-    // Видаляємо в правильному порядку (спочатку дочірні)
     Do ##class(Flowers.OrderItem).%KillExtent()
     Do ##class(Flowers.Order).%KillExtent()
     Do ##class(Flowers.Bouquet).%KillExtent()

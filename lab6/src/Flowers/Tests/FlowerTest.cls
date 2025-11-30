@@ -38,7 +38,6 @@ Method TestUniqueSku()
     Set b.Sku = "UNQ-SKU-001"
     Set b.Price = 12
     Set sc = b.%Save()
-    // Очікуємо помилку — дублікат SKU
     If $$$ISOK(sc) {
         Do ##class(Flowers.Flower).%DeleteId(b.%Id())
         Do ##class(Flowers.Flower).%DeleteId(a.%Id())
@@ -57,7 +56,6 @@ Method TestBasicValidation()
     Set f.Sku = "VAL-SKU-001"
     Set f.Price = 0.01
     Set sc = f.%Save()
-    // Очікуємо помилку — Price занадто низька
     If $$$ISOK(sc) {
         Do ##class(Flowers.Flower).%DeleteId(f.%Id())
         Throw ##class(%Exception.General).%New("Price too low should fail")
@@ -65,7 +63,6 @@ Method TestBasicValidation()
 
     Set f.FreshDays = 0
     Set sc = f.%Save()
-    // Очікуємо помилку — FreshDays < MIN
     If $$$ISOK(sc) {
         Do ##class(Flowers.Flower).%DeleteId(f.%Id())
         Throw ##class(%Exception.General).%New("FreshDays < MIN should fail")
