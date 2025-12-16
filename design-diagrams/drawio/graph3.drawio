@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.2.7">
+  <diagram name="Object Diagram" id="object-diagram">
+    <mxGraphModel dx="1665" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="alice" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#fff2cc;strokeColor=#d6b656;" value="alice: Customer" vertex="1">
+          <mxGeometry height="80" width="200" x="240" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="alice_attr" parent="alice" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" value="name = &quot;Alice Johnson&quot;&#xa;phone = &quot;123-456-7890&quot;&#xa;email = &quot;alice@mail.com&quot;" vertex="1">
+          <mxGeometry height="54" width="200" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="emma" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#e1d5e7;strokeColor=#9673a6;" value="emma: Employee" vertex="1">
+          <mxGeometry height="80" width="180" x="553" y="209" as="geometry" />
+        </mxCell>
+        <mxCell id="emma_attr" parent="emma" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" value="name = &quot;Emma Carter&quot;&#xa;position = &quot;Florist&quot;&#xa;supervisor = null" vertex="1">
+          <mxGeometry height="54" width="180" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="order1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#f8cecc;strokeColor=#b85450;" value="order1: Order" vertex="1">
+          <mxGeometry height="100" width="200" x="240" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="order1_attr" parent="order1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" value="orderId = 1001&#xa;orderDate = 2025-01-15&#xa;total = 200.00&#xa;totalWithTax = 240.00" vertex="1">
+          <mxGeometry height="74" width="200" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="rose" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#d5e8d4;strokeColor=#82b366;" value="rose: Flower" vertex="1">
+          <mxGeometry height="120" width="180" x="801" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="rose_attr" parent="rose" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" value="name = &quot;Red Rose&quot;&#xa;color = &quot;Red&quot;&#xa;freshDays = 10&#xa;price = 35.50&#xa;sku = &quot;FL-001&quot;" vertex="1">
+          <mxGeometry height="94" width="180" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="romantic" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#ffe6cc;strokeColor=#d79b00;" value="romantic: Bouquet" vertex="1">
+          <mxGeometry height="80" width="180" x="801" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="romantic_attr" parent="romantic" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" value="style = &quot;Romantic&quot;&#xa;price = 120.00&#xa;flowers = [rose, lily]" vertex="1">
+          <mxGeometry height="54" width="180" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="item1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#f8cecc;strokeColor=#b85450;" value="item1: OrderItem" vertex="1">
+          <mxGeometry height="70" width="180" x="550" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="item1_attr" parent="item1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" value="quantity = 1&#xa;subtotal = 120.00" vertex="1">
+          <mxGeometry height="44" width="180" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="link1" edge="1" parent="1" source="alice" style="endArrow=open;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="order1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link2" edge="1" parent="1" source="order1" style="endArrow=open;endFill=0;edgeStyle=orthogonalEdgeStyle;rounded=0;" target="emma" value="handledBy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link3" edge="1" parent="1" source="romantic" style="endArrow=open;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="rose" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link4" edge="1" parent="1" source="order1_attr" style="endArrow=open;endFill=0;edgeStyle=orthogonalEdgeStyle;rounded=0;entryX=0.006;entryY=0.364;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.475;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="item1_attr" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="369" as="sourcePoint" />
+            <mxPoint x="400" y="459" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="link5" edge="1" parent="1" source="item1" style="endArrow=open;endFill=0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="romantic" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" value="Діаграма об&#39;єктів: Магазин квітів" vertex="1">
+          <mxGeometry height="30" width="300" x="470" y="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
